@@ -11,7 +11,7 @@ module.exports = async (url) => {
   let result = []
   html.each((i, e) => {
     result.push({
-      "download": $(e).find("a").attr("href"),
+      "link": $(e).find("a").attr("href"),
       "text": $(e).find("a").text().replace(/\n/, "")
     })
   })
