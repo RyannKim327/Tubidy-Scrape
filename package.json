@@ -1,7 +1,7 @@
 {
   "name": "tubidy-scrape",
-  "version": "0.0.1",
-  "description": "",
+  "version": "0.0.2",
+  "description": "--- ### Introduction > This is just a simple repository, developed for those who want to look for some alternatives for music api.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -14,5 +14,14 @@
   "dependencies": {
     "axios": "^1.6.8",
     "cheerio": "^1.0.0-rc.12"
-  }
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RyannKim327/Tubidy-Scrape.git"
+  },
+  "bugs": {
+    "url": "https://github.com/RyannKim327/Tubidy-Scrape/issues"
+  },
+  "homepage": "https://github.com/RyannKim327/Tubidy-Scrape#readme"
 }
