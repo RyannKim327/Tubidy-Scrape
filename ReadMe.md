@@ -1,90 +1,106 @@
-### Tubidy Scrape
+# Tubidy Scrape
 #### MPOP Reverse II (Ryann Kim Sesgundo)
 
 ---
 ### Introduction
-> This is just a simple repository, developed for those who want to look for some alternatives for music api.
+> This is a simple library for scraping music and video information from Tubidy. Developed for those looking for alternatives for music APIs.
 
 ---
 ### Installation
-``` Bash
+```bash
 npm install tubidy-scrape@latest
 ```
 
 ---
-### How to
+### Usage
 
-#### Search .search(query)
-``` NodeJS
-const { search } = require("tubidy-scrape")
+First, import and initialize the `Tubidy` factory function:
 
-async function test() {
-    const data = await search("Something you want to search")
-    console.log(data)
-}
-
-test()
+```javascript
+const { Tubidy } = require("tubidy-scrape");
+const tubidy = Tubidy();
 ```
 
-**Result**
-``` JSON
+#### Search
+Search for music or videos by query.
+
+```javascript
+async function searchMusic() {
+    const results = await tubidy.search("Something you want to search", 1); // query, max_pages (optional, default 1)
+    console.log(results);
+}
+
+searchMusic();
+```
+
+**Result Format**
+```json
 [
     {
-        "link": "Song URL",
-        "title": "Song title"
+        "id": "content_id",
+        "title": "Song title",
+        "link": "https://..."
     },
     { ... }
 ]
-
 ```
 
 ---
 
-#### Choose .choosy(url)
-``` NodeJS
-const { choosy } = require("tubidy-scrape")
+#### Review
+Check if the content is available or still being processed.
 
-
-async function test (){
-    const data = await choosy("url you want to get")
-    console.log(data)
-}
-test()
-```
-
-**Result**
-``` JSON
-[
-    {
-        "link": "link to download",
-        "text": "File type and sizes"
-    }, { ... }
-]
-
-```
-
----
-#### Download .download(url)
-``` NodeJS
-const { download } = require("tubidy-scrape")
-
-async function test(){
-    const data = await download("url you want to download")
-    console.log(data)
+```javascript
+async function checkContent() {
+    const data = await tubidy.review("content_id");
+    console.log(data);
 }
 
-test()
+checkContent();
 ```
 
-**Result**
-``` JSON
+**Result Format**
+```json
 {
-    "download": "a link to download directly"
+    "success": "It is open to go"
+}
+// OR
+{
+    "error": "This content is in process"
 }
 ```
 
-> For full tutorial, kindly check the `test.js`
+---
+
+#### Download
+Get the download and play links for a specific content ID.
+
+```javascript
+async function getDownload() {
+    const data = await tubidy.download("content_id", "mp3audio"); // id, type (optional, default "mp3audio")
+    console.log(data);
+}
+
+getDownload();
+```
+
+**Available Types:**
+- `mp3audio` (default)
+- `mp4audio`
+- `video`
+
+**Result Format**
+```json
+{
+    "play": "https://...",
+    "download": "https://..."
+}
+```
+
+---
+### Changelog
+For a detailed list of changes, please see the [CHANGELOG.md](./CHANGELOG.md) file.
 
 ---
 ### Note
-> This package is still in development, and there are unexprected errors happend. if you encountered that, kindly email me weryses19@gmail.com or create an issue on my github repository.
+> This package is still in development. If you encounter any unexpected errors, please email me at weryses19@gmail.com or create an issue on the GitHub repository.
