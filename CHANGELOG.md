@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.0.3] - 2026-05-22
+- Patch Notes:
+	- Fixed issues and problem with no results in play function
+
 ## [1.0.0] - 2026-05-21
 ### Added
 - Complete rewrite in TypeScript with a new modular structure.

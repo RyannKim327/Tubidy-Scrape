@@ -8,12 +8,11 @@ export function Tubidy() {
 	const download = DOWNLOAD(ENDPOINT, USER_AGENT)
 	const review = REVIEW(ENDPOINT, USER_AGENT)
 	const search = SEARCH(ENDPOINT, USER_AGENT)
-	const types = TYPES
 
 	return {
 		download,
 		review,
 		search,
-		types
+		TYPES,
 	}
 }

@@ -4,7 +4,7 @@ export interface SearchResults {
 	link?: string
 }
 
-export interface RevewResult {
+export interface ReviewResult {
 	error?: string
 	success?: string
 }
