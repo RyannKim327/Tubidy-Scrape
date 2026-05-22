@@ -1,8 +1,9 @@
 import axios from "axios"
 import * as cheerio from "cheerio"
+import { ReviewResult } from "../interfaces"
 
 export default function REVIEW(endpoint: string, ua: string) {
-	return async (id: string) => {
+	return async (id: string): Promise<ReviewResult> => {
 		const { data } = await axios.get(`${endpoint}/watch/${id}/mp4/fs`, {
 			headers: {
 				"User-Agent": ua

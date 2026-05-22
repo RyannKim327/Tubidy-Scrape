@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.0.4] - 2026-05-22
+- Patch Notes:
+	- Improved type safety and interface usage across all scripts.
+	- Enhanced error handling in the download script when content is in process.
+
 ## [1.0.3] - 2026-05-22
 - Patch Notes:
 	- Fixed issues and problem with no results in play function

@@ -1,9 +1,11 @@
 import axios from "axios"
 import * as cheerio from "cheerio"
 import { TYPES } from "../lib/static"
+import { DownloadResult } from "../interfaces"
 
 export default function DOWNLOAD(endpoint: string, ua: string) {
-	return async (id: string, type?: string) => {
+	return async (id: string, type?: "video" | "mp4audio" | "mp3audio"): Promise<DownloadResult> => {
+		let error = undefined
 		const { data } = await axios.get(`${endpoint}/watch.php`, {
 			headers: {
 				"User-Agent": ua
@@ -27,9 +29,10 @@ export default function DOWNLOAD(endpoint: string, ua: string) {
 			const text = a.text().toLowerCase()
 			const href = a.attr("href")
 			if (href?.toLowerCase().includes("act=process")) {
-				return {
+				error = {
 					error: "The content is in process"
 				}
+				return false
 			}
 			if (text.includes("play")) {
 				play = href
@@ -38,10 +41,15 @@ export default function DOWNLOAD(endpoint: string, ua: string) {
 			}
 		})
 
+		if (error) {
+			return {
+				error
+			}
+		}
+
 		return {
 			play,
 			download
-
 		}
 	}
 } 

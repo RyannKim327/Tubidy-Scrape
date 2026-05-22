@@ -3,7 +3,7 @@ import * as cheerio from "cheerio"
 import { SearchResults } from "../interfaces"
 
 export default function SEARCH(endpoint: string, ua: string) {
-	return async (song: string, max_pages: number = 1) => {
+	return async (song: string, max_pages: number = 1): Promise<SearchResults[]> => {
 		let results: SearchResults[] = []
 		let page = 1
 		while (page <= max_pages) {
